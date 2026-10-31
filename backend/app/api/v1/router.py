@@ -10,6 +10,7 @@ from app.api.v1.endpoints import (
     products,
     plans,
     quotations,
+    subscriptions,
 )
 
 api_router = APIRouter()
@@ -31,3 +32,6 @@ api_router.include_router(plans.router)
 
 # Module 5: Quotation Management endpoints
 api_router.include_router(quotations.router)
+
+# Module 6: Subscription Lifecycle & State Machine endpoints
+api_router.include_router(subscriptions.router)

@@ -9,6 +9,7 @@ import { CustomerListPage } from './pages/customers/CustomerListPage';
 import { ProductListPage } from './pages/products/ProductListPage';
 import { PlanListPage } from './pages/plans/PlanListPage';
 import { QuotationListPage } from './pages/quotations/QuotationListPage';
+import { SubscriptionListPage } from './pages/subscriptions/SubscriptionListPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { CreateStaffModal } from './components/CreateStaffModal';
 import { 
@@ -25,7 +26,8 @@ import {
   LayoutDashboard,
   Package,
   Calendar,
-  FileCheck2
+  FileCheck2,
+  Repeat
 } from 'lucide-react';
 
 interface HealthData {
@@ -42,7 +44,7 @@ interface HealthData {
 
 function MainLayout() {
   const { user, logout } = useAuth();
-  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations'>('overview');
+  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations' | 'subscriptions'>('overview');
   const [health, setHealth] = useState<HealthData | null>(null);
   const [userList, setUserList] = useState<User[]>([]);
   const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
@@ -152,6 +154,18 @@ function MainLayout() {
               <FileCheck2 className="w-3.5 h-3.5" />
               <span>Quotations</span>
             </button>
+
+            <button
+              onClick={() => setCurrentTab('subscriptions')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition ${
+                currentTab === 'subscriptions'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Repeat className="w-3.5 h-3.5" />
+              <span>Subscriptions</span>
+            </button>
           </nav>
         </div>
 
@@ -212,6 +226,8 @@ function MainLayout() {
           <PlanListPage />
         ) : currentTab === 'quotations' ? (
           <QuotationListPage />
+        ) : currentTab === 'subscriptions' ? (
+          <SubscriptionListPage />
         ) : (
           <>
             {/* Overview Banner */}
