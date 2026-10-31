@@ -72,3 +72,4 @@ class RoleChecker:
 get_admin_user = RoleChecker(["ADMIN"])
 get_staff_or_admin_user = RoleChecker(["ADMIN", "STAFF"])
 get_any_authenticated_user = get_current_user
+

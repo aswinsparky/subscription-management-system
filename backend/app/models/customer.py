@@ -58,3 +58,4 @@ class Customer(Base):
 
     def __repr__(self) -> str:
         return f"<Customer(id={self.id}, code='{self.customer_code}', name='{self.full_name}')>"
+

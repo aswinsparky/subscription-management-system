@@ -85,3 +85,4 @@ class PasswordResetToken(Base):
 
     def __repr__(self) -> str:
         return f"<PasswordResetToken(id={self.id}, user_id={self.user_id}, is_used={self.is_used})>"
+

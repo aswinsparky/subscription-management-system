@@ -148,3 +148,4 @@ class QuotationItem(Base):
     quotation: Mapped["Quotation"] = relationship("Quotation", back_populates="items")
     product: Mapped["Product"] = relationship("Product")
     variant: Mapped[Optional["ProductVariant"]] = relationship("ProductVariant")
+

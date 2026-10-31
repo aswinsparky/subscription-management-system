@@ -47,3 +47,4 @@ class ChurnRiskAssessment(Base):
 
     def __repr__(self) -> str:
         return f"<ChurnRiskAssessment(customer_id={self.customer_id}, score={self.risk_score}, class='{self.risk_classification}')>"
+

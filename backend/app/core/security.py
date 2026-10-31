@@ -79,3 +79,4 @@ def decode_access_token(token: str) -> Optional[Dict[str, Any]]:
 def generate_secure_reset_token() -> str:
     """Generate a cryptographically secure, URL-safe single-use reset token."""
     return secrets.token_urlsafe(48)
+

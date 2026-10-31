@@ -284,3 +284,4 @@ class AuthService:
         db.commit()
 
         return {"message": "Password successfully updated. You may now log in with your new password."}
+

@@ -58,3 +58,4 @@ class Plan(Base):
 
     def __repr__(self) -> str:
         return f"<Plan(id={self.id}, code='{self.plan_code}', interval='{self.billing_interval}', price={self.plan_price})>"
+
