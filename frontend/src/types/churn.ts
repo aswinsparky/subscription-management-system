@@ -36,3 +36,4 @@ export interface RetentionActionRequest {
   notes: string;
   discount_percent_offered?: number;
 }
+

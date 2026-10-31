@@ -126,3 +126,4 @@ Supported Event Types:
 - `CANCELLED`: Terminated prior to or upon completion
 - `CLOSED`: Terminated normally at contract completion
 - `RETENTION_ACTION`: Logged outreach from Churn Radar
+

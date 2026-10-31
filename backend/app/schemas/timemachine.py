@@ -59,3 +59,4 @@ class SimulationResponse(BaseModel):
     current_state: StateSnapshot
     predicted_state: Optional[StateSnapshot] = None
     policy_checks: Dict[str, bool]
+

@@ -150,3 +150,4 @@ def test_retention_action_logging():
     data = res.json()
     assert data["status"] == "LOGGED_SUCCESSFULLY"
     assert data["action_type"] == "DISCOUNT_OFFER"
+

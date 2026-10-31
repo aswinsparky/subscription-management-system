@@ -113,3 +113,4 @@ def delete_plan(
     If referenced in subscriptions or quotations, marks ARCHIVED instead of deleting.
     """
     return PlanService.archive_or_delete_plan(db, plan_id, admin_user)
+

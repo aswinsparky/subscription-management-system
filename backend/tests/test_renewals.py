@@ -172,3 +172,4 @@ def test_renewal_disallowed_by_plan():
     )
     assert res.status_code == 400
     assert "prohibits renewals" in res.json()["detail"].lower()
+

@@ -127,3 +127,4 @@ class QuotationTemplateResponse(BaseModel):
     items: List[QuotationTemplateItemResponse] = []
 
     model_config = ConfigDict(from_attributes=True)
+

@@ -176,3 +176,4 @@ def test_safe_delete_or_archive_plan():
     assert arch_res.status_code == 200
     assert arch_res.json()["action"] == "archived"
     assert arch_res.json()["status"] == "ARCHIVED"
+

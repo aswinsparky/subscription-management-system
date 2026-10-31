@@ -115,3 +115,4 @@ def customer_accept_quote(
     current_user: User = Depends(get_current_user),
 ):
     return PortalService.accept_quotation(db, current_user, quotation_id)
+

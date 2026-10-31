@@ -44,3 +44,4 @@ class CustomerPortalOverview(BaseModel):
 
 class PortalActionRequest(BaseModel):
     reason: Optional[str] = None
+

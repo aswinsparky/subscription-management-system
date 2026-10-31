@@ -53,3 +53,4 @@ class RetentionActionResponse(BaseModel):
     recorded_at: datetime
     recorded_by: str
     status: str
+

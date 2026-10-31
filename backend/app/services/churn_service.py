@@ -252,3 +252,4 @@ class ChurnService:
             recorded_by=actor.email,
             status="LOGGED_SUCCESSFULLY",
         )
+

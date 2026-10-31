@@ -54,3 +54,4 @@ class Member2WebhookPayload(BaseModel):
     invoice_reference: str
     status: str = "SUCCESS"  # SUCCESS or FAILED
     error_message: Optional[str] = None
+

@@ -89,3 +89,4 @@ export interface SubscriptionListResponse {
   page: number;
   size: number;
 }
+

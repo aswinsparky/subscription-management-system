@@ -84,3 +84,4 @@ def member2_invoice_webhook(
     db: Session = Depends(get_db),
 ):
     return RenewalService.handle_member2_webhook(db, payload)
+

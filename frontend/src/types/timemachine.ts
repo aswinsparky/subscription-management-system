@@ -43,3 +43,4 @@ export interface SimulationResult {
   predicted_state?: StateSnapshot | null;
   policy_checks: Record<string, boolean>;
 }
+

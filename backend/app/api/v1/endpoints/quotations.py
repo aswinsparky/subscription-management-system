@@ -131,3 +131,4 @@ def convert_to_subscription(
     Enforces idempotency: Duplicate conversions are strictly rejected.
     """
     return QuotationService.convert_to_subscription(db, quotation_id, current_user)
+

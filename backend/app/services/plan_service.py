@@ -217,3 +217,4 @@ class PlanService:
         if plan.available_until and now > plan.available_until:
             return False
         return True
+

@@ -22,3 +22,4 @@ export interface CustomerPortalOverview {
   pending_quotations: Quotation[];
   total_active_mrr: number | string;
 }
+
