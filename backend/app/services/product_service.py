@@ -339,3 +339,4 @@ class ProductService:
             "action": "deleted",
             "product_id": product_id,
         }
+

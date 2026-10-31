@@ -275,3 +275,4 @@ def test_customer_role_cannot_modify_products():
         headers={"Authorization": f"Bearer {cust_token}"},
     )
     assert res.status_code == 403
+

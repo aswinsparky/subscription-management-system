@@ -153,3 +153,4 @@ def delete_product(
     If referenced in active quotations or subscriptions, archives instead of deleting.
     """
     return ProductService.delete_or_archive_product(db, product_id, current_user)
+
