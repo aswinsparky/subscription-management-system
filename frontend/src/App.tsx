@@ -7,6 +7,7 @@ import { RegisterPage } from './pages/auth/RegisterPage';
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage';
 import { CustomerListPage } from './pages/customers/CustomerListPage';
 import { ProductListPage } from './pages/products/ProductListPage';
+import { PlanListPage } from './pages/plans/PlanListPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { CreateStaffModal } from './components/CreateStaffModal';
 import { 
@@ -21,7 +22,8 @@ import {
   Shield,
   CheckCircle2,
   LayoutDashboard,
-  Package
+  Package,
+  Calendar
 } from 'lucide-react';
 
 interface HealthData {
@@ -38,7 +40,7 @@ interface HealthData {
 
 function MainLayout() {
   const { user, logout } = useAuth();
-  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products'>('overview');
+  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans'>('overview');
   const [health, setHealth] = useState<HealthData | null>(null);
   const [userList, setUserList] = useState<User[]>([]);
   const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
@@ -124,6 +126,18 @@ function MainLayout() {
               <Package className="w-3.5 h-3.5" />
               <span>Products & Pricing</span>
             </button>
+
+            <button
+              onClick={() => setCurrentTab('plans')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition ${
+                currentTab === 'plans'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Subscription Plans</span>
+            </button>
           </nav>
         </div>
 
@@ -180,6 +194,8 @@ function MainLayout() {
           <CustomerListPage />
         ) : currentTab === 'products' ? (
           <ProductListPage />
+        ) : currentTab === 'plans' ? (
+          <PlanListPage />
         ) : (
           <>
             {/* Overview Banner */}
@@ -383,7 +399,7 @@ function MainLayout() {
                   <p className="text-xs text-slate-400">Strict sequential phase execution</p>
                 </div>
                 <span className="text-xs font-mono text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded border border-emerald-800/60">
-                  4 of 12 Phases Completed
+                  5 of 12 Phases Completed
                 </span>
               </div>
 
@@ -393,8 +409,8 @@ function MainLayout() {
                   { num: '02', title: 'Auth & RBAC Schema', status: 'COMPLETED', desc: 'Admin, Staff, Customer JWT, bcrypt, Alembic' },
                   { num: '03', title: 'Customer Management', status: 'COMPLETED', desc: 'CRUD, search, filter, pagination, user linking' },
                   { num: '04', title: 'Product & Variants', status: 'COMPLETED', desc: 'Multi-variant pricing calculation engine' },
-                  { num: '05', title: 'Subscription Plans', status: 'NEXT', desc: 'Billing intervals, rules, auto-close configs' },
-                  { num: '06', title: 'Quotation Management', status: 'PENDING', desc: 'Templates, pricing lines, conversion guard' },
+                  { num: '05', title: 'Subscription Plans', status: 'COMPLETED', desc: 'Billing intervals, rules, auto-close configs' },
+                  { num: '06', title: 'Quotation Management', status: 'NEXT', desc: 'Templates, pricing lines, conversion guard' },
                   { num: '07', title: 'Subscription Lifecycle', status: 'PENDING', desc: 'Draft->Active->Closed state machine' },
                   { num: '08', title: 'Renewal Scheduler', status: 'PENDING', desc: 'Automated renewal & Member 2 idempotency' },
                   { num: '09', title: 'Churn Radar', status: 'PENDING', desc: 'Risk scoring (0-100), behavioral signal metrics' },

@@ -3,7 +3,7 @@ API v1 Main Router.
 Aggregates all module endpoints under the /api/v1 prefix.
 """
 from fastapi import APIRouter
-from app.api.v1.endpoints import health, auth, customers, products
+from app.api.v1.endpoints import health, auth, customers, products, plans
 
 api_router = APIRouter()
 
@@ -18,3 +18,6 @@ api_router.include_router(customers.router)
 
 # Module 3: Product & Variant Management endpoints
 api_router.include_router(products.router)
+
+# Module 4: Subscription Plan Management endpoints
+api_router.include_router(plans.router)
