@@ -13,6 +13,7 @@ import { SubscriptionListPage } from './pages/subscriptions/SubscriptionListPage
 import { RenewalManagementPage } from './pages/renewals/RenewalManagementPage';
 import { ChurnRadarPage } from './pages/churn/ChurnRadarPage';
 import { TimeMachinePage } from './pages/timemachine/TimeMachinePage';
+import { CustomerPortalPage } from './pages/portal/CustomerPortalPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { CreateStaffModal } from './components/CreateStaffModal';
 import { 
@@ -49,7 +50,9 @@ interface HealthData {
 
 function MainLayout() {
   const { user, logout } = useAuth();
-  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations' | 'subscriptions' | 'renewals' | 'churn' | 'timemachine'>('overview');
+  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations' | 'subscriptions' | 'renewals' | 'churn' | 'timemachine' | 'portal'>(
+    user?.role === 'CUSTOMER' ? 'portal' : 'overview'
+  );
   const [health, setHealth] = useState<HealthData | null>(null);
   const [userList, setUserList] = useState<User[]>([]);
   const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
@@ -207,6 +210,18 @@ function MainLayout() {
               <History className="w-3.5 h-3.5" />
               <span>Time Machine</span>
             </button>
+
+            <button
+              onClick={() => setCurrentTab('portal')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition ${
+                currentTab === 'portal'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <UserCheck className="w-3.5 h-3.5" />
+              <span>Customer Portal</span>
+            </button>
           </nav>
         </div>
 
@@ -275,6 +290,8 @@ function MainLayout() {
           <ChurnRadarPage />
         ) : currentTab === 'timemachine' ? (
           <TimeMachinePage />
+        ) : currentTab === 'portal' ? (
+          <CustomerPortalPage />
         ) : (
           <>
             {/* Overview Banner */}

@@ -14,6 +14,7 @@ from app.api.v1.endpoints import (
     renewals,
     churn,
     timemachine,
+    portal,
 )
 
 api_router = APIRouter()
@@ -47,3 +48,6 @@ api_router.include_router(churn.router)
 
 # Module 9: Subscription Time Machine & Historical Event Ledger
 api_router.include_router(timemachine.router)
+
+# Module 10: Customer Self-Service Portal & Multi-Tenant Isolation
+api_router.include_router(portal.router)
