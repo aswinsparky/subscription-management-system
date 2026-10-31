@@ -13,6 +13,7 @@ from app.api.v1.endpoints import (
     subscriptions,
     renewals,
     churn,
+    timemachine,
 )
 
 api_router = APIRouter()
@@ -43,3 +44,6 @@ api_router.include_router(renewals.router)
 
 # Module 8: Churn Radar & Behavioral Risk Analytics
 api_router.include_router(churn.router)
+
+# Module 9: Subscription Time Machine & Historical Event Ledger
+api_router.include_router(timemachine.router)
