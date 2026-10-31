@@ -1,5 +1,5 @@
 """
-API v1 Main Router.
+API v1 Main Router for Brightloop Nexus (Members 1 & 2).
 Aggregates all module endpoints under the /api/v1 prefix.
 """
 from fastapi import APIRouter
@@ -15,6 +15,16 @@ from app.api.v1.endpoints import (
     churn,
     timemachine,
     portal,
+    taxes,
+    discounts,
+    invoices,
+    payments,
+    reconciliation,
+    revenue_guardian,
+    revenue_simulator,
+    ai_assistant,
+    analytics,
+    billing_recovery,
 )
 
 api_router = APIRouter()
@@ -22,32 +32,26 @@ api_router = APIRouter()
 # Core diagnostic and health check endpoint
 api_router.include_router(health.router, tags=["Health & Diagnostics"])
 
-# Module 1: Authentication & RBAC endpoints
+# Member 1 Endpoints
 api_router.include_router(auth.router)
-
-# Module 2: Customer Management endpoints
 api_router.include_router(customers.router)
-
-# Module 3: Product & Variant Management endpoints
 api_router.include_router(products.router)
-
-# Module 4: Subscription Plan Management endpoints
 api_router.include_router(plans.router)
-
-# Module 5: Quotation Management endpoints
 api_router.include_router(quotations.router)
-
-# Module 6: Subscription Lifecycle & State Machine endpoints
 api_router.include_router(subscriptions.router)
-
-# Module 7: Automated Renewal Scheduler & Member 2 Billing Integration
 api_router.include_router(renewals.router)
-
-# Module 8: Churn Radar & Behavioral Risk Analytics
 api_router.include_router(churn.router)
-
-# Module 9: Subscription Time Machine & Historical Event Ledger
 api_router.include_router(timemachine.router)
-
-# Module 10: Customer Self-Service Portal & Multi-Tenant Isolation
 api_router.include_router(portal.router)
+
+# Member 2 Financial & Intelligence Endpoints
+api_router.include_router(taxes.router, prefix="/taxes", tags=["Tax Management"])
+api_router.include_router(discounts.router, prefix="/discounts", tags=["Discount Management"])
+api_router.include_router(invoices.router, prefix="/invoices", tags=["Invoice Management"])
+api_router.include_router(payments.router, prefix="/payments", tags=["Payment Management"])
+api_router.include_router(reconciliation.router, prefix="/reconciliation", tags=["Payment Reconciliation"])
+api_router.include_router(revenue_guardian.router, prefix="/revenue-guardian", tags=["Revenue Guardian"])
+api_router.include_router(revenue_simulator.router, prefix="/revenue-simulator", tags=["Future Revenue Simulator"])
+api_router.include_router(ai_assistant.router, prefix="/ai-assistant", tags=["Ask Brightloop AI"])
+api_router.include_router(analytics.router, prefix="/analytics", tags=["Revenue Command Center"])
+api_router.include_router(billing_recovery.router, prefix="/billing-recovery", tags=["Self-Healing Billing"])

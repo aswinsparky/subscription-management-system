@@ -1,6 +1,6 @@
 """
 Database Engine, Session Management, and Base Declarative Model.
-Uses SQLAlchemy 2.0 with PyMySQL for MySQL 8.0+.
+Uses SQLAlchemy 2.0 with PyMySQL for MySQL 8.0+, with resilient fallback handling.
 """
 import logging
 from typing import Generator
@@ -10,15 +10,22 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-# SQLAlchemy 2.0 Engine with Connection Pooling for MySQL
-engine = create_engine(
-    settings.SQLALCHEMY_DATABASE_URI,
-    pool_size=settings.DB_POOL_SIZE,
-    max_overflow=settings.DB_MAX_OVERFLOW,
-    pool_recycle=settings.DB_POOL_RECYCLE,
-    pool_pre_ping=settings.DB_POOL_PRE_PING,
-    echo=False,
-)
+uri = settings.SQLALCHEMY_DATABASE_URI
+if "sqlite" in uri:
+    engine = create_engine(
+        uri,
+        connect_args={"check_same_thread": False},
+        echo=False,
+    )
+else:
+    engine = create_engine(
+        uri,
+        pool_size=settings.DB_POOL_SIZE,
+        max_overflow=settings.DB_MAX_OVERFLOW,
+        pool_recycle=settings.DB_POOL_RECYCLE,
+        pool_pre_ping=settings.DB_POOL_PRE_PING,
+        echo=False,
+    )
 
 # Session factory
 SessionLocal = sessionmaker(
@@ -53,10 +60,19 @@ def get_db() -> Generator[Session, None, None]:
 
 def check_db_connection() -> dict:
     """
-    Diagnostic utility to test live MySQL connection and retrieve server version.
+    Diagnostic utility to test live database connection and retrieve engine info.
     """
     try:
         with engine.connect() as conn:
+            if "sqlite" in settings.SQLALCHEMY_DATABASE_URI:
+                result = conn.execute(text("SELECT sqlite_version();"))
+                row = result.fetchone()
+                return {
+                    "status": "connected",
+                    "database_engine": "SQLite",
+                    "version": row[0] if row else "unknown",
+                    "current_database": "local_sqlite",
+                }
             result = conn.execute(text("SELECT VERSION() as version, DATABASE() as db_name;"))
             row = result.fetchone()
             return {
@@ -72,4 +88,3 @@ def check_db_connection() -> dict:
             "database_engine": "MySQL 8.0+",
             "error": str(e),
         }
-

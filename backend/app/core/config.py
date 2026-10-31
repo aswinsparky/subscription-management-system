@@ -1,18 +1,20 @@
 """
 Application Configuration Settings.
 Loads configuration from environment variables and .env file using Pydantic Settings.
+Supports MySQL 8.0+ as primary production database and SQLite for tests/offline development.
 """
-from typing import List, Union
+from typing import List, Union, Optional
 from pydantic import AnyHttpUrl, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Brightloop Nexus — Subscription & Intelligence Engine"
+    PROJECT_NAME: str = "Brightloop Nexus — Subscription & Financial Intelligence Engine"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
 
     # Database Configuration (MySQL 8.0+)
+    DATABASE_URL: Optional[str] = None
     DB_HOST: str = "localhost"
     DB_PORT: int = 3306
     DB_USER: str = "root"
@@ -29,6 +31,9 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = "brightloop_super_secret_jwt_key_hackathon_2026_change_in_production"
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440  # 24 hours
+
+    # AI Assistant (Gemini)
+    GEMINI_API_KEY: Optional[str] = None
 
     # CORS
     CORS_ORIGINS: Union[List[str], str] = [
@@ -47,12 +52,14 @@ class Settings(BaseSettings):
             return json.loads(v)
         return v
 
-    # Member 2 Service Integration
-    MEMBER2_BILLING_SERVICE_URL: str = "http://localhost:8001"
+    # Member 2 Service Integration (Internal Monolith URL)
+    MEMBER2_BILLING_SERVICE_URL: str = "http://localhost:8000"
 
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> str:
-        """Construct PyMySQL connection URI for MySQL 8.0+."""
+        """Construct database URI. Supports explicit DATABASE_URL or MySQL PyMySQL."""
+        if self.DATABASE_URL:
+            return self.DATABASE_URL
         return (
             f"mysql+pymysql://{self.DB_USER}:{self.DB_PASSWORD}@"
             f"{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}?charset=utf8mb4"
@@ -67,4 +74,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-

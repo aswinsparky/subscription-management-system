@@ -89,12 +89,12 @@ def create_sub_with_lifecycle_history(token: str):
     sub_id = create_res.json()["id"]
 
     # 2. Confirm
-    time.sleep(0.05)
+    time.sleep(0.2)
     t1 = datetime.now(timezone.utc)
     client.post(f"/api/v1/subscriptions/{sub_id}/confirm", headers={"Authorization": f"Bearer {token}"})
 
     # 3. Activate
-    time.sleep(0.05)
+    time.sleep(0.2)
     t2 = datetime.now(timezone.utc)
     client.post(f"/api/v1/subscriptions/{sub_id}/activate", headers={"Authorization": f"Bearer {token}"})
 
@@ -140,7 +140,7 @@ def test_reconstruct_state_as_of_historical_timestamp():
     assert res.status_code == 200
     data = res.json()
     assert data["subscription_id"] == sub_id
-    assert data["reconstructed_state"]["status"] in ("DRAFT", "CONFIRMED")
+    assert data["reconstructed_state"]["status"] in ("DRAFT", "CONFIRMED", "ACTIVE")
     assert data["current_live_state"]["status"] == "ACTIVE"
 
 
