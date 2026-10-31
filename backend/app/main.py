@@ -75,3 +75,4 @@ def root():
         "documentation": f"{settings.API_V1_STR}/docs",
         "health": f"{settings.API_V1_STR}/health",
     }
+

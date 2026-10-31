@@ -9,3 +9,4 @@ api_router = APIRouter()
 
 # Core diagnostic and health check endpoint
 api_router.include_router(health.router, tags=["Health & Diagnostics"])
+

@@ -82,3 +82,4 @@ cd c:\odoo\frontend
 npm run dev
 ```
 - Frontend UI: [http://localhost:5173](http://localhost:5173)
+

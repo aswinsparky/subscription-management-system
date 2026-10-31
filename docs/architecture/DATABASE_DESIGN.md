@@ -209,3 +209,4 @@ erDiagram
 | Invoices & Line Items | **Member 2** | Member 2 creates Invoices matching Member 1's subscription items |
 | Payment Collection & Gateways | **Member 2** | Member 2 processes transactions and reconciliation |
 | Churn Payment Signals | **Member 2** | Member 2 exposes failed payment count and days overdue for Churn Radar |
+

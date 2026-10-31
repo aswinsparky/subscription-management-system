@@ -72,3 +72,4 @@ def check_db_connection() -> dict:
             "database_engine": "MySQL 8.0+",
             "error": str(e),
         }
+

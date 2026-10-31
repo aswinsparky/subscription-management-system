@@ -23,3 +23,4 @@ def health_check(db: Session = Depends(get_db)):
         "version": settings.VERSION,
         "database": db_status,
     }
+

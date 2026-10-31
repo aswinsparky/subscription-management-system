@@ -26,3 +26,4 @@ def test_health_check_database_connectivity():
     assert data["database"]["status"] == "connected"
     assert "8.0" in data["database"]["version"]
     assert data["database"]["current_database"] == "brightloop_nexus"
+
