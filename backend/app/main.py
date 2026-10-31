@@ -21,12 +21,23 @@ logger = logging.getLogger("brightloop.backend")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
-    Application lifespan context: verify database connectivity on startup.
+    Application lifespan context: verify database connectivity on startup
+    and seed default roles (ADMIN, STAFF, CUSTOMER) and initial admin user.
     """
     logger.info("Initializing Brightloop Nexus Engine...")
     db_check = check_db_connection()
     if db_check.get("status") == "connected":
         logger.info(f"Connected to MySQL successfully. Server version: {db_check.get('version')}")
+        from app.core.database import SessionLocal
+        from app.services.auth_service import AuthService
+        db = SessionLocal()
+        try:
+            AuthService.seed_initial_roles_and_admin(db)
+            logger.info("Default roles and initial admin user verified successfully.")
+        except Exception as e:
+            logger.error(f"Failed to seed initial roles: {e}")
+        finally:
+            db.close()
     else:
         logger.error(f"Failed to connect to MySQL: {db_check.get('error')}")
     yield
