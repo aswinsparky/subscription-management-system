@@ -11,6 +11,7 @@ from app.api.v1.endpoints import (
     plans,
     quotations,
     subscriptions,
+    renewals,
 )
 
 api_router = APIRouter()
@@ -35,3 +36,6 @@ api_router.include_router(quotations.router)
 
 # Module 6: Subscription Lifecycle & State Machine endpoints
 api_router.include_router(subscriptions.router)
+
+# Module 7: Automated Renewal Scheduler & Member 2 Billing Integration
+api_router.include_router(renewals.router)

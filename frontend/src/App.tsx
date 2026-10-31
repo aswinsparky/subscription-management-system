@@ -10,6 +10,7 @@ import { ProductListPage } from './pages/products/ProductListPage';
 import { PlanListPage } from './pages/plans/PlanListPage';
 import { QuotationListPage } from './pages/quotations/QuotationListPage';
 import { SubscriptionListPage } from './pages/subscriptions/SubscriptionListPage';
+import { RenewalManagementPage } from './pages/renewals/RenewalManagementPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { CreateStaffModal } from './components/CreateStaffModal';
 import { 
@@ -44,7 +45,7 @@ interface HealthData {
 
 function MainLayout() {
   const { user, logout } = useAuth();
-  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations' | 'subscriptions'>('overview');
+  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations' | 'subscriptions' | 'renewals'>('overview');
   const [health, setHealth] = useState<HealthData | null>(null);
   const [userList, setUserList] = useState<User[]>([]);
   const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
@@ -166,6 +167,18 @@ function MainLayout() {
               <Repeat className="w-3.5 h-3.5" />
               <span>Subscriptions</span>
             </button>
+
+            <button
+              onClick={() => setCurrentTab('renewals')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition ${
+                currentTab === 'renewals'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <RefreshCw className="w-3.5 h-3.5" />
+              <span>Renewals</span>
+            </button>
           </nav>
         </div>
 
@@ -228,6 +241,8 @@ function MainLayout() {
           <QuotationListPage />
         ) : currentTab === 'subscriptions' ? (
           <SubscriptionListPage />
+        ) : currentTab === 'renewals' ? (
+          <RenewalManagementPage />
         ) : (
           <>
             {/* Overview Banner */}
