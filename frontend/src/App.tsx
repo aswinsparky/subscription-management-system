@@ -8,6 +8,7 @@ import { ResetPasswordPage } from './pages/auth/ResetPasswordPage';
 import { CustomerListPage } from './pages/customers/CustomerListPage';
 import { ProductListPage } from './pages/products/ProductListPage';
 import { PlanListPage } from './pages/plans/PlanListPage';
+import { QuotationListPage } from './pages/quotations/QuotationListPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { CreateStaffModal } from './components/CreateStaffModal';
 import { 
@@ -23,7 +24,8 @@ import {
   CheckCircle2,
   LayoutDashboard,
   Package,
-  Calendar
+  Calendar,
+  FileCheck2
 } from 'lucide-react';
 
 interface HealthData {
@@ -40,7 +42,7 @@ interface HealthData {
 
 function MainLayout() {
   const { user, logout } = useAuth();
-  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans'>('overview');
+  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations'>('overview');
   const [health, setHealth] = useState<HealthData | null>(null);
   const [userList, setUserList] = useState<User[]>([]);
   const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
@@ -138,6 +140,18 @@ function MainLayout() {
               <Calendar className="w-3.5 h-3.5" />
               <span>Subscription Plans</span>
             </button>
+
+            <button
+              onClick={() => setCurrentTab('quotations')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition ${
+                currentTab === 'quotations'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <FileCheck2 className="w-3.5 h-3.5" />
+              <span>Quotations</span>
+            </button>
           </nav>
         </div>
 
@@ -196,6 +210,8 @@ function MainLayout() {
           <ProductListPage />
         ) : currentTab === 'plans' ? (
           <PlanListPage />
+        ) : currentTab === 'quotations' ? (
+          <QuotationListPage />
         ) : (
           <>
             {/* Overview Banner */}
