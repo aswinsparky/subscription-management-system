@@ -494,8 +494,8 @@ function MainLayout() {
                   <h3 className="text-lg font-bold text-white">Full Implementation Roadmap</h3>
                   <p className="text-xs text-slate-400">Strict sequential phase execution</p>
                 </div>
-                <span className="text-xs font-mono text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded border border-emerald-800/60">
-                  5 of 12 Phases Completed
+                <span className="text-xs font-mono text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded border border-emerald-800/60 font-semibold">
+                  12 of 12 Phases Completed (100%)
                 </span>
               </div>
 
@@ -506,13 +506,13 @@ function MainLayout() {
                   { num: '03', title: 'Customer Management', status: 'COMPLETED', desc: 'CRUD, search, filter, pagination, user linking' },
                   { num: '04', title: 'Product & Variants', status: 'COMPLETED', desc: 'Multi-variant pricing calculation engine' },
                   { num: '05', title: 'Subscription Plans', status: 'COMPLETED', desc: 'Billing intervals, rules, auto-close configs' },
-                  { num: '06', title: 'Quotation Management', status: 'NEXT', desc: 'Templates, pricing lines, conversion guard' },
-                  { num: '07', title: 'Subscription Lifecycle', status: 'PENDING', desc: 'Draft->Active->Closed state machine' },
-                  { num: '08', title: 'Renewal Scheduler', status: 'PENDING', desc: 'Automated renewal & Member 2 idempotency' },
-                  { num: '09', title: 'Churn Radar', status: 'PENDING', desc: 'Risk scoring (0-100), behavioral signal metrics' },
-                  { num: '10', title: 'Time Machine', status: 'PENDING', desc: 'Append-only event audit & state reconstruction' },
-                  { num: '11', title: 'Customer Portal', status: 'PENDING', desc: 'Self-service dashboard & strict tenant checks' },
-                  { num: '12', title: 'Testing & Hardening', status: 'PENDING', desc: 'Pytest, Vitest, Playwright E2E verification' },
+                  { num: '06', title: 'Quotation Management', status: 'COMPLETED', desc: 'Templates, pricing lines, conversion guard' },
+                  { num: '07', title: 'Subscription Lifecycle', status: 'COMPLETED', desc: 'Draft->Active->Closed state machine' },
+                  { num: '08', title: 'Renewal Scheduler', status: 'COMPLETED', desc: 'Automated renewal & Member 2 idempotency' },
+                  { num: '09', title: 'Churn Radar', status: 'COMPLETED', desc: 'Risk scoring (0-100), behavioral signal metrics' },
+                  { num: '10', title: 'Time Machine', status: 'COMPLETED', desc: 'Append-only event audit & state reconstruction' },
+                  { num: '11', title: 'Customer Portal', status: 'COMPLETED', desc: 'Self-service dashboard & strict tenant checks' },
+                  { num: '12', title: 'Hardening & Integration', status: 'COMPLETED', desc: 'Member 2 contract, end-to-end tests & docs' },
                 ].map((phase) => (
                   <div 
                     key={phase.num}
