@@ -1,0 +1,193 @@
+{
+  "info": {
+    "name": "Brightloop Nexus - Member 2 Financial & Revenue Intelligence API",
+    "description": "Comprehensive API collection for Taxes, Discounts, Invoices, ReportLab PDF, Payments, Reconciliation, Revenue Guardian, Simulator, AI Assistant, Analytics, and Recovery.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Tax Management",
+      "item": [
+        {
+          "name": "List Taxes",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/taxes"
+          }
+        },
+        {
+          "name": "Create Tax (Standard GST 18%)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/taxes",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Standard GST\",\n  \"tax_type\": \"PERCENTAGE\",\n  \"rate\": 18.00,\n  \"applicability\": \"ALL\",\n  \"is_active\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Calculate Tax for Items",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/taxes/calculate",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subtotal\": 100.00,\n  \"tax_ids\": [1]\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Discount Management",
+      "item": [
+        {
+          "name": "List Discounts",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/discounts"
+          }
+        },
+        {
+          "name": "Validate Coupon Code",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/discounts/validate",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coupon_code\": \"SAVE20\",\n  \"purchase_amount\": 150.00,\n  \"customer_id\": 1\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Invoices & ReportLab PDF",
+      "item": [
+        {
+          "name": "List Invoices",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/invoices"
+          }
+        },
+        {
+          "name": "Generate Invoices From Subscriptions",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/invoices/generate-from-subscription",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ]
+          }
+        },
+        {
+          "name": "Download Invoice PDF",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/invoices/1/pdf",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Payments & Reconciliation",
+      "item": [
+        {
+          "name": "Record Payment",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/payments",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_id\": 1,\n  \"amount\": 150.00,\n  \"payment_method\": \"CARD\",\n  \"notes\": \"Online checkout payment\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Trigger Auto-Reconciliation",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/reconciliation/auto-reconcile",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Revenue Guardian & Simulator",
+      "item": [
+        {
+          "name": "Run Revenue Guardian Audit",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/revenue-guardian/run",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ]
+          }
+        },
+        {
+          "name": "Simulate Future Revenue Growth",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/revenue-simulator/simulate",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scenario_name\": \"Aggressive Scale 2026\",\n  \"new_customers_monthly\": 15,\n  \"churn_rate_percent\": 2.0,\n  \"plan_upgrade_rate_percent\": 8.0,\n  \"price_change_percent\": 5.0,\n  \"projection_months\": 12\n}"
+            }
+          }
+        },
+        {
+          "name": "Query AI Revenue Assistant",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ai-assistant/query",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"What is our total overdue amount and collection rate?\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
