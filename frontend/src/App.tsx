@@ -11,6 +11,7 @@ import { PlanListPage } from './pages/plans/PlanListPage';
 import { QuotationListPage } from './pages/quotations/QuotationListPage';
 import { SubscriptionListPage } from './pages/subscriptions/SubscriptionListPage';
 import { RenewalManagementPage } from './pages/renewals/RenewalManagementPage';
+import { ChurnRadarPage } from './pages/churn/ChurnRadarPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { CreateStaffModal } from './components/CreateStaffModal';
 import { 
@@ -28,7 +29,8 @@ import {
   Package,
   Calendar,
   FileCheck2,
-  Repeat
+  Repeat,
+  Radar
 } from 'lucide-react';
 
 interface HealthData {
@@ -45,7 +47,7 @@ interface HealthData {
 
 function MainLayout() {
   const { user, logout } = useAuth();
-  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations' | 'subscriptions' | 'renewals'>('overview');
+  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products' | 'plans' | 'quotations' | 'subscriptions' | 'renewals' | 'churn'>('overview');
   const [health, setHealth] = useState<HealthData | null>(null);
   const [userList, setUserList] = useState<User[]>([]);
   const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
@@ -179,6 +181,18 @@ function MainLayout() {
               <RefreshCw className="w-3.5 h-3.5" />
               <span>Renewals</span>
             </button>
+
+            <button
+              onClick={() => setCurrentTab('churn')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition ${
+                currentTab === 'churn'
+                  ? 'bg-rose-600 text-white shadow-md shadow-rose-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Radar className="w-3.5 h-3.5" />
+              <span>Churn Radar</span>
+            </button>
           </nav>
         </div>
 
@@ -243,6 +257,8 @@ function MainLayout() {
           <SubscriptionListPage />
         ) : currentTab === 'renewals' ? (
           <RenewalManagementPage />
+        ) : currentTab === 'churn' ? (
+          <ChurnRadarPage />
         ) : (
           <>
             {/* Overview Banner */}

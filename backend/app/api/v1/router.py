@@ -12,6 +12,7 @@ from app.api.v1.endpoints import (
     quotations,
     subscriptions,
     renewals,
+    churn,
 )
 
 api_router = APIRouter()
@@ -39,3 +40,6 @@ api_router.include_router(subscriptions.router)
 
 # Module 7: Automated Renewal Scheduler & Member 2 Billing Integration
 api_router.include_router(renewals.router)
+
+# Module 8: Churn Radar & Behavioral Risk Analytics
+api_router.include_router(churn.router)
