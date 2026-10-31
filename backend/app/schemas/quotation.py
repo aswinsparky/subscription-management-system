@@ -32,7 +32,7 @@ class QuotationCreate(BaseModel):
     plan_id: int
     template_id: Optional[int] = None
     expiration_date: Optional[datetime] = None
-    tax_reference: Optional[str] = Field(None, description="Member 2 tax rule reference")
+    tax_reference: Optional[str] = Field(None, description="Applicable tax rule reference")
     items: List[QuotationItemCreate] = Field(..., min_length=1, description="At least one quotation line item is required")
 
 

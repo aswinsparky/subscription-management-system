@@ -32,7 +32,7 @@ api_router = APIRouter()
 # Core diagnostic and health check endpoint
 api_router.include_router(health.router, tags=["Health & Diagnostics"])
 
-# Member 1 Endpoints
+# Core Subscription & Operations Endpoints
 api_router.include_router(auth.router)
 api_router.include_router(customers.router)
 api_router.include_router(products.router)
@@ -44,7 +44,7 @@ api_router.include_router(churn.router)
 api_router.include_router(timemachine.router)
 api_router.include_router(portal.router)
 
-# Member 2 Financial & Intelligence Endpoints
+# Financial Intelligence Endpoints
 api_router.include_router(taxes.router, prefix="/taxes", tags=["Tax Management"])
 api_router.include_router(discounts.router, prefix="/discounts", tags=["Discount Management"])
 api_router.include_router(invoices.router, prefix="/invoices", tags=["Invoice Management"])

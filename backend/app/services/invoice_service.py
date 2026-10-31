@@ -1,5 +1,5 @@
 """
-Invoice Generation and Lifecycle Domain Service for Brightloop Nexus (Member 2).
+Invoice Generation and Lifecycle Domain Service for Brightloop Nexus.
 Enforces transactional consistency, idempotency, duplicate prevention, and historical snapshots.
 """
 from datetime import datetime, timedelta

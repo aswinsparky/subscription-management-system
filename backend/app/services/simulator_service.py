@@ -1,5 +1,5 @@
 """
-Future Revenue Simulator Engine for Brightloop Nexus (Member 2).
+Future Revenue Simulator Engine for Brightloop Nexus.
 Provides deterministic mathematical recurring revenue forecasting with transparent assumptions.
 """
 from datetime import datetime

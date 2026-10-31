@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Ask Brightloop AI Assistant (Member 2).
+Pydantic v2 Schemas for Ask Brightloop AI Assistant.
 """
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field

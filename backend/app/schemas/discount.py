@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Discount and Coupon Management (Member 2).
+Pydantic v2 Schemas for Discount and Coupon Management.
 """
 from datetime import datetime
 from decimal import Decimal

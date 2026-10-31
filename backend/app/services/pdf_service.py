@@ -1,5 +1,5 @@
 """
-PDF Generation Service using ReportLab for Brightloop Nexus (Member 2).
+PDF Generation Service using ReportLab for Brightloop Nexus.
 Generates audit-ready, pixel-perfect invoices matching enterprise standards.
 """
 import io

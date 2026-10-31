@@ -2,7 +2,7 @@
 Unified Models Export for Brightloop Nexus (Members 1 & 2).
 Used by SQLAlchemy engine and Alembic metadata auto-detection.
 """
-# Member 1 Models
+# Core Subscription Models
 from app.models.user import Role, User, PasswordResetToken
 from app.models.customer import Customer
 from app.models.product import Product, ProductVariant
@@ -21,7 +21,7 @@ from app.models.subscription import (
 )
 from app.models.churn import ChurnRiskAssessment
 
-# Member 2 Financial & Revenue Intelligence Models
+# Financial Intelligence Models
 from app.models.tax import Tax
 from app.models.discount import Discount, DiscountUsage
 from app.models.invoice import (
@@ -38,7 +38,7 @@ from app.models.recovery import BillingRecoveryAttempt
 from app.models.simulator import RevenueSimulationScenario
 
 __all__ = [
-    # Member 1
+    # Core
     "Role",
     "User",
     "PasswordResetToken",
@@ -55,7 +55,7 @@ __all__ = [
     "SubscriptionEvent",
     "RenewalBillingRequest",
     "ChurnRiskAssessment",
-    # Member 2
+    # Financial
     "Tax",
     "Discount",
     "DiscountUsage",

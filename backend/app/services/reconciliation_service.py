@@ -1,5 +1,5 @@
 """
-Payment Reconciliation Service for Brightloop Nexus (Member 2).
+Payment Reconciliation Service for Brightloop Nexus.
 Audits financial mismatches, unlinked payments, and discrepancy resolutions.
 """
 from typing import List, Tuple, Optional

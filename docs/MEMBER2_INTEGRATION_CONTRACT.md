@@ -1,14 +1,14 @@
-# Brightloop Nexus — Member 1 to Member 2 Integration Contract
+# Brightloop Nexus — Subscription Engine to Financial Engine Integration Contract
 **Platform**: Brightloop Nexus Intelligent Subscription & Revenue Management Platform  
-**Member 1 Role**: Subscription & Intelligence Engine  
-**Member 2 Role**: Billing, Invoicing, Tax, & Revenue Analytics Engine  
+**Subscription Engine Role**: Subscription & Intelligence Engine  
+**Financial Engine Role**: Billing, Invoicing, Tax, & Revenue Analytics Engine  
 **Database**: MySQL 8.0+ (InnoDB, `utf8mb4`, `DECIMAL(12,2)`)
 
 ---
 
 ## 1. Architectural Boundaries & Responsibility Separation
 
-| Scope | Member 1 Responsibility (This Engine) | Member 2 Responsibility |
+| Scope | Subscription Engine Responsibility (This Engine) | Financial Engine Responsibility |
 | :--- | :--- | :--- |
 | **Identity & Access** | Customer profiles, authentication (JWT/bcrypt), RBAC (`ADMIN`, `STAFF`, `CUSTOMER`). | Payment gateway credentials, payment methods tokenization. |
 | **Catalog & Plans** | Products, variant pricing, subscription plans (intervals, policies). | Plan discounts, promotion codes, tax categories. |
@@ -21,7 +21,7 @@
 
 ## 2. Renewal Billing Request Protocol (Idempotency Contract)
 
-Member 1 generates and stores renewal requests in `renewal_billing_requests` table with a deterministic idempotency key before dispatching to Member 2.
+Subscription Engine generates and stores renewal requests in `renewal_billing_requests` table with a deterministic idempotency key before dispatching to Financial Engine.
 
 ### Idempotency Key Format
 ```
@@ -32,9 +32,9 @@ REN-SUB{subscription_id}-{YYYYMMDD_period_start}-{YYYYMMDD_period_end}
 ### Lifecycle Flow
 ```mermaid
 sequenceDiagram
-    participant M1 as Member 1 (Subscription Engine)
+    participant M1 as Subscription Engine (Subscription Engine)
     participant DB as MySQL Database
-    participant M2 as Member 2 (Billing Engine)
+    participant M2 as Financial Engine (Billing Engine)
 
     M1->>DB: Query ACTIVE subs due for renewal (next_billing_date <= horizon)
     M1->>M1: Compute next period start & end, generate idempotency key
@@ -49,7 +49,7 @@ sequenceDiagram
     end
 ```
 
-### Outgoing Payload (Member 1 $\rightarrow$ Member 2)
+### Outgoing Payload (Subscription Engine $\rightarrow$ Financial Engine)
 ```json
 {
   "idempotency_key": "REN-SUB42-20261101-20261201",
@@ -65,7 +65,7 @@ sequenceDiagram
 }
 ```
 
-### Incoming Webhook Callback (Member 2 $\rightarrow$ Member 1)
+### Incoming Webhook Callback (Financial Engine $\rightarrow$ Subscription Engine)
 Endpoint: `POST /api/v1/renewals/member2-webhook`
 
 **Success Body**:
@@ -91,7 +91,7 @@ Endpoint: `POST /api/v1/renewals/member2-webhook`
 
 ## 3. Quotation Tax & Discount Contract
 
-When a quotation is created or finalized, Member 1 provides the base product & variant lines:
+When a quotation is created or finalized, Subscription Engine provides the base product & variant lines:
 
 - Base sales price from `products.sales_price`
 - Variant additional price from `product_variants.additional_price`
@@ -99,7 +99,7 @@ When a quotation is created or finalized, Member 1 provides the base product & v
 - Line subtotal = `unit_price * quantity`
 - Quotation `subtotal` = $\sum \text{Line Subtotals}$
 
-Member 2 populates:
+Financial Engine populates:
 - `quotations.tax_reference`: Regulatory tax category or external tax calculation ID.
 - `quotations.tax_amount`: Computed tax (Decimal 12,2).
 - `quotations.total`: `subtotal + tax_amount - discount_amount`.
@@ -108,7 +108,7 @@ Member 2 populates:
 
 ## 4. Time Machine Append-Only Event Store
 
-Every transition executed by either Member 1 or Member 2 writes an immutable row into `subscription_events`:
+Every transition executed by either Subscription Engine or Financial Engine writes an immutable row into `subscription_events`:
 
 ```sql
 INSERT INTO subscription_events (

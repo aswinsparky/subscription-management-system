@@ -1,5 +1,5 @@
 """
-Payment Processing and Balance Recalculation Service for Brightloop Nexus (Member 2).
+Payment Processing and Balance Recalculation Service for Brightloop Nexus.
 Enforces transactional safety, partial payments, idempotency, and audit trails.
 """
 from datetime import datetime

@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Self-Healing Billing (Member 2).
+Pydantic v2 Schemas for Self-Healing Billing.
 """
 from datetime import datetime
 from typing import Optional, List

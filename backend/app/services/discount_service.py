@@ -1,5 +1,5 @@
 """
-Discount Domain Service for Brightloop Nexus (Member 2).
+Discount Domain Service for Brightloop Nexus.
 Enforces business rules, minimum spend, expiration dates, and per-customer usage tracking.
 """
 from decimal import Decimal

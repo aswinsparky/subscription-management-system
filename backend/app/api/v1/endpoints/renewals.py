@@ -1,5 +1,5 @@
 """
-Automated Renewal Scheduler & Member 2 Billing Integration Endpoints (Module 7).
+Automated Renewal Scheduler & Billing Integration Endpoints (Module 7).
 """
 from typing import List, Optional
 from fastapi import APIRouter, Depends, Query, status
@@ -77,7 +77,7 @@ def run_batch_renewals(
 @router.post(
     "/member2-webhook",
     response_model=RenewalBillingRequestResponse,
-    summary="Member 2 Billing Engine asynchronous invoice callback",
+    summary="Automated Billing Engine asynchronous invoice callback",
 )
 def member2_invoice_webhook(
     payload: Member2WebhookPayload,

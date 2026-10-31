@@ -1,5 +1,5 @@
 """
-Discount & Coupon Management API Endpoints (Member 2).
+Discount & Coupon Management API Endpoints.
 """
 from typing import List
 from fastapi import APIRouter, Depends, Query, status

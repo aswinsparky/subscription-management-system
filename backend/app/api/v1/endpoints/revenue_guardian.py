@@ -1,5 +1,5 @@
 """
-Revenue Guardian Anomaly Detection API Endpoints (Member 2).
+Revenue Guardian Anomaly Detection API Endpoints.
 """
 from typing import List, Optional
 from fastapi import APIRouter, Depends, Query, status

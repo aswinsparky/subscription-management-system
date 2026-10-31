@@ -1,5 +1,5 @@
 """
-Self-Healing Billing and Failure Recovery API Endpoints (Member 2).
+Self-Healing Billing and Failure Recovery API Endpoints.
 """
 from typing import List, Optional
 from fastapi import APIRouter, Depends, Query

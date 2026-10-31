@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Payment Reconciliation (Member 2).
+Pydantic v2 Schemas for Payment Reconciliation.
 """
 from datetime import datetime
 from decimal import Decimal

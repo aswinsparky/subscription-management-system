@@ -1,6 +1,6 @@
 """
-Automated Renewal Scheduler & Member 2 Billing Integration (Module 7) Integration Tests.
-Verifies due detection, idempotency key generation, period advancement, and Member 2 invoice sync.
+Automated Renewal Scheduler & Billing Integration (Module 7) Integration Tests.
+Verifies due detection, idempotency key generation, period advancement, and automated invoice sync.
 """
 import uuid
 from datetime import datetime, timezone, timedelta
@@ -94,7 +94,7 @@ def create_active_sub(db, days_until_due=0, renewal_allowed=True):
 
 
 def test_renewal_due_detection_and_trigger():
-    """Verify due detection, Member 2 billing request creation, and period advancement."""
+    """Verify due detection, billing request creation, and period advancement."""
     token = get_admin_token()
     db = SessionLocal()
     try:

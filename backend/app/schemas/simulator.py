@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Future Revenue Simulator (Member 2).
+Pydantic v2 Schemas for Future Revenue Simulator.
 """
 from datetime import datetime
 from decimal import Decimal

@@ -1,5 +1,5 @@
 """
-Ask Brightloop AI Assistant Service for Brightloop Nexus (Member 2).
+Ask Brightloop AI Assistant Service for Brightloop Nexus.
 Strictly grounds answers in validated database aggregator functions.
 Supports Google Gemini API with seamless deterministic fallback.
 """

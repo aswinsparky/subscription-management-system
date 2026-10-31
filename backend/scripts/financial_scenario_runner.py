@@ -1,5 +1,5 @@
 """
-Financial Scenario Runner & Stress Tester for Brightloop Nexus (Member 2).
+Financial Scenario Runner & Stress Tester for Brightloop Nexus .
 Simulates recurring billing cycles, stress-tests Revenue Guardian anomaly detection,
 and validates idempotency and financial precision across simulated volume.
 """

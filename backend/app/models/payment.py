@@ -1,5 +1,5 @@
 """
-Payment Model for Brightloop Nexus (Member 2).
+Payment Model for Brightloop Nexus.
 Enforces transactional balance updates, partial payments, and audit histories.
 """
 from datetime import datetime

@@ -1,5 +1,5 @@
 """
-Revenue Command Center and Financial Analytics Service for Brightloop Nexus (Member 2).
+Revenue Command Center and Financial Analytics Service for Brightloop Nexus.
 Aggregates live database metrics for MRR, ARR, cash collection, and churn payment signals.
 """
 from datetime import datetime, timedelta
@@ -166,7 +166,7 @@ class AnalyticsService:
     @staticmethod
     def get_customer_churn_signals(db: Session, customer_id: int) -> Dict[str, Any]:
         """
-        Integration Contract with Member 1 Churn Radar:
+        Integration Contract with Churn Radar:
         Provides financial health signals for a customer.
         """
         now = datetime.utcnow()

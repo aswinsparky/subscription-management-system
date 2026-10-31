@@ -1,5 +1,5 @@
 """
-Tax Management API Endpoints (Member 2).
+Tax Management API Endpoints .
 """
 from typing import List
 from fastapi import APIRouter, Depends, Query, status
@@ -56,7 +56,7 @@ def update_tax(
     return TaxService.update_tax(db, tax_id, data)
 
 
-@router.post("/calculate", response_model=TaxCalculationResponse, summary="Calculate tax on amount (Member 1 integration)")
+@router.post("/calculate", response_model=TaxCalculationResponse, summary="Calculate tax on amount (Integration)")
 def calculate_taxes(
     data: TaxCalculationRequest,
     db: Session = Depends(get_db),

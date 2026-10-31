@@ -1,5 +1,5 @@
 """
-Demonstration Seed Script for Brightloop Nexus (Member 2: Financial Intelligence Engine).
+Demonstration Seed Script for Brightloop Nexus (Financial Intelligence Engine).
 Seeds taxes, discounts, invoices, payments, reconciliations, and guardian findings.
 """
 from datetime import datetime, timedelta, timezone

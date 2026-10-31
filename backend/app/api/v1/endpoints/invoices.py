@@ -1,5 +1,5 @@
 """
-Invoice Management and PDF Generation API Endpoints (Member 2).
+Invoice Management and PDF Generation API Endpoints.
 Enforces customer data isolation, pagination, status transitions, and PDF streaming.
 """
 from typing import Optional

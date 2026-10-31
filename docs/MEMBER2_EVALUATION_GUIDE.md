@@ -1,8 +1,8 @@
-# BRIGHTLOOP NEXUS — MEMBER 2 EVALUATION & TESTING GUIDE
+# BRIGHTLOOP NEXUS — FINANCIAL INTELLIGENCE EVALUATION & TESTING GUIDE
 ## Financial & Revenue Intelligence Engine
 
 **Author:** swetha100504 (`swetha100504@gmail.com`)  
-**Role:** Member 2 — Financial & Revenue Intelligence Architect  
+**Role:** Financial & Revenue Intelligence Architect  
 **Project:** Brightloop Nexus  
 
 ---
@@ -24,7 +24,7 @@ This populates:
 
 ---
 
-## 2. Testing Member 2's 11 Modules Step-by-Step
+## 2. Testing Financial Intelligence Modules Step-by-Step
 
 ### 1. Taxes & Discounts
 - Navigate to the **Taxes & Discounts** tab in the UI (`/taxes-discounts`).

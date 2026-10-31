@@ -1,5 +1,5 @@
 """
-Self-Healing Billing and Failure Recovery Service for Brightloop Nexus (Member 2).
+Self-Healing Billing and Failure Recovery Service for Brightloop Nexus.
 Provides safe, idempotent retry logic with backoff delays and audit records.
 """
 from datetime import datetime, timedelta

@@ -48,7 +48,7 @@ app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     description=(
-        "Brightloop Nexus — Enterprise Subscription & Intelligence Engine (Member 1). "
+        "Brightloop Nexus — Enterprise Subscription & Financial Intelligence Platform. "
         "Provides Customer Management, Product & Variant Management, Plans, Quotations, "
         "Subscription Lifecycle, Automated Renewal Scheduling, Churn Radar, and Subscription Time Machine."
     ),

@@ -1,5 +1,5 @@
 # Brightloop Nexus — Database Architecture & ER Design
-**Member 1: Subscription & Intelligence Engine**
+**Unified Subscription & Financial Architecture**
 **Database Engine**: MySQL 8.0+ (InnoDB Storage Engine)
 **Driver**: PyMySQL with SQLAlchemy 2.0
 **Migration Tool**: Alembic
@@ -192,21 +192,21 @@ erDiagram
         int customer_id FK
         decimal amount "DECIMAL(12,2)"
         string status "PENDING | PROCESSED | FAILED"
-        string invoice_reference "Member 2 Hand-off"
+        string invoice_reference "Automated Billing Reference"
     }
 ```
 
 ---
 
-## 3. Coordinated Hand-off with Member 2 (Financial Engine)
+## 3. Coordinated Architecture (Subscription & Financial Engines)
 
 | Responsibility | Owner | Integration Contract |
 |---|---|---|
-| Customer Profile & Address | **Member 1** | Exposes customer ID, billing address, tax identification |
-| Plan, Products & Quantities | **Member 1** | Exposes subscription items, pricing, billing interval |
-| Renewal Trigger & Due Subscriptions | **Member 1** | Exposes `GET /api/v1/renewals/due` with `idempotency_key` |
-| Tax Calculations & Rules | **Member 2** | Member 1 calls `POST /api/v1/taxes/calculate` or references tax rule IDs |
-| Invoices & Line Items | **Member 2** | Member 2 creates Invoices matching Member 1's subscription items |
-| Payment Collection & Gateways | **Member 2** | Member 2 processes transactions and reconciliation |
-| Churn Payment Signals | **Member 2** | Member 2 exposes failed payment count and days overdue for Churn Radar |
+| Customer Profile & Address | **Subscription Engine** | Exposes customer ID, billing address, tax identification |
+| Plan, Products & Quantities | **Subscription Engine** | Exposes subscription items, pricing, billing interval |
+| Renewal Trigger & Due Subscriptions | **Subscription Engine** | Exposes `GET /api/v1/renewals/due` with `idempotency_key` |
+| Tax Calculations & Rules | **Financial Engine** | Subscription Engine calls `POST /api/v1/taxes/calculate` or references tax rule IDs |
+| Invoices & Line Items | **Financial Engine** | Financial Engine creates Invoices matching subscription items |
+| Payment Collection & Gateways | **Financial Engine** | Financial Engine processes transactions and reconciliation |
+| Churn Payment Signals | **Financial Engine** | Financial Engine exposes failed payment count and days overdue for Churn Radar |
 

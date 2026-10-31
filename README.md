@@ -1,6 +1,6 @@
 # Brightloop Nexus — Intelligent Subscription & Revenue Management Platform
 
-## Member 1: Subscription & Intelligence Engine
+## Enterprise Subscription & Revenue Platform
 **Repository**: [https://github.com/aswinsparky/subscription-management-system.git](https://github.com/aswinsparky/subscription-management-system.git)  
 **Database**: MySQL 8.0+ (InnoDB, UTF-8 `utf8mb4`, `DECIMAL(12,2)` Monetary Precision)  
 **Architecture**: FastAPI Microservices + React 18 TypeScript Single-Page Application  
@@ -9,9 +9,7 @@
 
 ## 1. Executive Project Summary
 
-Brightloop Nexus is an enterprise subscription lifecycle, dynamic pricing, automated renewal, and churn intelligence platform. Built collaboratively across two specialized engineering tracks:
-- **Member 1 (This Engine)**: Subscription Lifecycle, Customer Directory, Multi-Variant Pricing Catalog, Subscription Plans, Quotations, Automated Renewal Scheduler, Churn Radar Risk Analytics, Time Machine State Reconstruction, and Customer Self-Service Portal.
-- **Member 2**: Tax Computation, Payment Gateway Tokenization, Invoicing Ledgers, and Financial Revenue Recognition.
+Brightloop Nexus is an enterprise subscription lifecycle, dynamic pricing, automated renewal, and churn intelligence platform. An enterprise subscription lifecycle, dynamic pricing, automated recurring invoicing, and financial revenue intelligence platform unifying subscription operations, automated billing, payment reconciliation, and AI-driven telemetry.
 
 ---
 
@@ -26,11 +24,11 @@ Brightloop Nexus is an enterprise subscription lifecycle, dynamic pricing, autom
 | **05** | **Subscription Plan Management** | Interval rules (`DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`), date availability checks, policy rules (`pause_allowed`, `early_cancellation_allowed`, `renewal_allowed`). | **COMPLETED** |
 | **06** | **Quotation Management** | Quote templates, line item pricing calculators, expiration date validation, idempotent one-way conversion to subscriptions (`409 Conflict` on replay). | **COMPLETED** |
 | **07** | **Subscription Lifecycle Machine** | State machine: `DRAFT` $\rightarrow$ `CONFIRMED` $\rightarrow$ `ACTIVE` $\rightleftharpoons$ `PAUSED` $\rightarrow$ `CLOSED`/`CANCELLED`. Plan policy enforcement & append-only event auditing. | **COMPLETED** |
-| **08** | **Renewal Scheduler & Member 2 Sync** | Automated renewal scheduler, horizon-based due detection, deterministic idempotency keys (`REN-SUB{id}-{start}-{end}`), simulated Member 2 invoice generation. | **COMPLETED** |
+| **08** | **Renewal Scheduler & Billing Invoicing** | Automated renewal scheduler, horizon-based due detection, deterministic idempotency keys (`REN-SUB{id}-{start}-{end}`), automated recurring invoice generation. | **COMPLETED** |
 | **09** | **Churn Radar & Risk Analytics** | Deterministic 0–100 heuristic churn risk scoring, risk classification (`LOW`, `MEDIUM`, `HIGH`), signal breakdown (pauses, auto-renew toggles, overdue bills), retention actions. | **COMPLETED** |
 | **10** | **Subscription Time Machine** | Append-only audit store in `subscription_events`. Arbitrary historical state reconstruction as of timestamp $T$. Predictive What-If simulation sandbox without DB mutation. | **COMPLETED** |
 | **11** | **Customer Self-Service Portal** | Strict tenant-isolated customer portal (`/api/v1/portal/*`). Customers view profile, manage active subscriptions, request pauses/cancellations, and accept pending quotations. | **COMPLETED** |
-| **12** | **Hardening, Optimization & Docs** | Comprehensive Pytest suite (44 passed integration tests), clean Vite TypeScript production bundle, complete Member 2 integration contract documentation. | **COMPLETED** |
+| **12** | **Hardening, Optimization & Docs** | Comprehensive Pytest suite (44 passed integration tests), clean Vite TypeScript production bundle, complete financial integration documentation. | **COMPLETED** |
 
 ---
 
@@ -100,7 +98,7 @@ Brightloop Nexus is an enterprise subscription lifecycle, dynamic pricing, autom
 ### Module 7: Automated Renewal Scheduler
 - `GET /api/v1/renewals/due`: Subscriptions due within horizon days.
 - `GET /api/v1/renewals/requests`: Audit ledger of billing requests.
-- `POST /api/v1/renewals/trigger/{id}`: Idempotent renewal with Member 2 invoice generation.
+- `POST /api/v1/renewals/trigger/{id}`: Idempotent renewal with automated invoice generation.
 - `POST /api/v1/renewals/batch-run`: Automated batch renewal runner.
 - `POST /api/v1/renewals/member2-webhook`: Asynchronous callback contract.
 
@@ -124,11 +122,11 @@ Brightloop Nexus is an enterprise subscription lifecycle, dynamic pricing, autom
 
 ---
 
-## 5. Member 2 Integration Contract
+## 5. Automated Invoicing & Billing Contract
 
 Full specification documented in [`docs/MEMBER2_INTEGRATION_CONTRACT.md`](docs/MEMBER2_INTEGRATION_CONTRACT.md).
 - **Renewal Idempotency**: Guaranteed unique idempotency key: `REN-SUB{sub_id}-{start_date}-{end_date}`.
-- **Tax & Discount Hooks**: Member 1 passes line subtotals; Member 2 returns tax breakdown and discount codes.
+- **Tax & Discount Hooks**: Subscription engine passes line subtotals; financial engine applies verified tax breakdowns and discount codes.
 
 ---
 

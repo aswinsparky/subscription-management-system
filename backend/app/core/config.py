@@ -52,7 +52,7 @@ class Settings(BaseSettings):
             return json.loads(v)
         return v
 
-    # Member 2 Service Integration (Internal Monolith URL)
+    # Billing Service Integration (Internal Monolith URL)
     MEMBER2_BILLING_SERVICE_URL: str = "http://localhost:8000"
 
     @property

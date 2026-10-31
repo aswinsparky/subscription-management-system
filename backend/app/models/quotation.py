@@ -87,7 +87,7 @@ class Quotation(Base):
     )
     expiration_date: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     subtotal: Mapped[Decimal] = mapped_column(Numeric(12, 2), default=Decimal("0.00"), nullable=False)
-    tax_reference: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)  # Member 2 contract
+    tax_reference: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)  # Applied tax rule reference
     tax_amount: Mapped[Decimal] = mapped_column(Numeric(12, 2), default=Decimal("0.00"), nullable=False)
     total: Mapped[Decimal] = mapped_column(Numeric(12, 2), default=Decimal("0.00"), nullable=False)
     status: Mapped[str] = mapped_column(

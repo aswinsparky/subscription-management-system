@@ -46,7 +46,7 @@ class Subscription(Base):
     )  # DAILY, WEEKLY, MONTHLY, YEARLY
     payment_terms: Mapped[str] = mapped_column(String(100), default="Immediate", nullable=False)
     subtotal: Mapped[Decimal] = mapped_column(Numeric(12, 2), default=Decimal("0.00"), nullable=False)
-    discount_reference: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)  # Member 2 contract
+    discount_reference: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)  # Applied discount rule reference
     discount_amount: Mapped[Decimal] = mapped_column(Numeric(12, 2), default=Decimal("0.00"), nullable=False)
     tax_amount: Mapped[Decimal] = mapped_column(Numeric(12, 2), default=Decimal("0.00"), nullable=False)
     total_amount: Mapped[Decimal] = mapped_column(Numeric(12, 2), default=Decimal("0.00"), nullable=False)
@@ -152,7 +152,7 @@ class SubscriptionEvent(Base):
 
 class RenewalBillingRequest(Base):
     """
-    Integration Contract Table with Member 2 (Billing & Revenue Engine).
+    Renewal Billing Requests tracking table.
     Uses idempotency keys to ensure duplicate renewals are prevented.
     """
     __tablename__ = "renewal_billing_requests"
@@ -171,7 +171,7 @@ class RenewalBillingRequest(Base):
     status: Mapped[str] = mapped_column(
         String(50), default="PENDING", nullable=False, index=True
     )  # PENDING, PROCESSED, FAILED
-    invoice_reference: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)  # Populated by Member 2
+    invoice_reference: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)  # Generated Invoice reference
     retry_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     last_error: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(

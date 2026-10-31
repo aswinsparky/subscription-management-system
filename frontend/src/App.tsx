@@ -6,7 +6,7 @@ import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage';
 
-// Member 1 Pages
+// Core Subscription Pages
 import { CustomerListPage } from './pages/customers/CustomerListPage';
 import { ProductListPage } from './pages/products/ProductListPage';
 import { PlanListPage } from './pages/plans/PlanListPage';
@@ -19,7 +19,7 @@ import { CustomerPortalPage } from './pages/portal/CustomerPortalPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { CreateStaffModal } from './components/CreateStaffModal';
 
-// Member 2 Financial Intelligence Pages
+// Financial Intelligence Pages
 import { RevenueDashboardPage } from './pages/financial/RevenueDashboardPage';
 import { InvoicesPage } from './pages/financial/InvoicesPage';
 import { PaymentsPage } from './pages/financial/PaymentsPage';
@@ -407,7 +407,7 @@ function MainLayout() {
         {/* Scrollable Main Dynamic Viewport */}
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="max-w-7xl mx-auto space-y-6">
-            {/* Member 2 Financial Modules */}
+            {/* Financial Intelligence Modules */}
             {currentTab === 'revenue' && <RevenueDashboardPage />}
             {currentTab === 'invoices' && <InvoicesPage />}
             {currentTab === 'payments' && <PaymentsPage />}
@@ -418,7 +418,7 @@ function MainLayout() {
             {currentTab === 'taxes' && <TaxesDiscountsPage />}
             {currentTab === 'recovery' && <BillingRecoveryPage />}
 
-            {/* Member 1 Modules */}
+            {/* Subscription Modules */}
             {currentTab === 'customers' && <CustomerListPage />}
             {currentTab === 'products' && <ProductListPage />}
             {currentTab === 'plans' && <PlanListPage />}
@@ -512,7 +512,7 @@ function MainLayout() {
 
         {/* Footer */}
         <footer className="border-t border-slate-800/80 py-3 px-6 text-center text-xs text-slate-500 flex-shrink-0 bg-slate-950/40">
-          Brightloop Nexus Enterprise Platform — Developed collaboratively across Member 1 & Member 2 modules.
+          Brightloop Nexus Enterprise Platform — Unified Subscription & Financial Intelligence Engine.
         </footer>
       </div>
 

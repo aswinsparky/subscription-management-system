@@ -1,5 +1,5 @@
 """
-Tax Model for Brightloop Nexus (Member 2).
+Tax Model for Brightloop Nexus.
 Supports percentage-based and fixed-amount taxes with historical snapshot preservation.
 """
 from datetime import datetime

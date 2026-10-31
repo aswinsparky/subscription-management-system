@@ -1,5 +1,5 @@
 """
-Revenue Simulator Scenarios and Historical Projections Model for Brightloop Nexus (Member 2).
+Revenue Simulator Scenarios and Historical Projections Model for Brightloop Nexus.
 Persists forecasting scenarios, assumptions, and comparisons against actual baselines.
 """
 from datetime import datetime

@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Payment Processing (Member 2).
+Pydantic v2 Schemas for Payment Processing.
 """
 from datetime import datetime
 from decimal import Decimal

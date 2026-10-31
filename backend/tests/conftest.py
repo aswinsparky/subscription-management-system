@@ -8,7 +8,7 @@ from sqlalchemy import text
 from app.core.database import engine, Base, SessionLocal
 from app.core.config import settings
 from app.services.auth_service import AuthService
-from app.models import *  # Discover all Member 1 & 2 models
+from app.models import *  # Discover all application models
 
 
 @pytest.fixture(scope="session", autouse=True)

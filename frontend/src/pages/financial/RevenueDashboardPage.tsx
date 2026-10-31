@@ -96,7 +96,7 @@ export function RevenueDashboardPage() {
               <Sparkles className="w-4 h-4" />
             </span>
             <span className="text-xs uppercase font-mono tracking-wider text-indigo-400 font-semibold">
-              Member 2: Financial Intelligence Engine
+              Financial Intelligence Engine
             </span>
           </div>
           <h2 className="text-2xl font-extrabold text-white mt-1">Revenue Command Center</h2>

@@ -1,5 +1,5 @@
 """
-Self-Healing Billing and Failure Recovery Tracking Models for Brightloop Nexus (Member 2).
+Self-Healing Billing and Failure Recovery Tracking Models for Brightloop Nexus.
 Enforces safe retry attempts, exponential delays, and idempotency protection.
 """
 from datetime import datetime

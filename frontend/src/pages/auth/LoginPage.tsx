@@ -125,7 +125,7 @@ export const LoginPage: React.FC = () => {
           {/* Quick Demo Pre-fill shortcuts */}
           <div className="pt-4 border-t border-slate-800 space-y-2">
             <p className="text-xs font-semibold uppercase text-slate-500 tracking-wider">
-              Quick Hackathon Demo Roles:
+              Quick Demo Roles:
             </p>
             <div className="grid grid-cols-2 gap-2">
               <button
@@ -137,7 +137,7 @@ export const LoginPage: React.FC = () => {
               </button>
               <button
                 type="button"
-                onClick={() => fillQuickLogin('staff_member1@brightloop.io', 'StaffPassword123!')}
+                onClick={() => fillQuickLogin('staff@brightloop.io', 'StaffPassword123!')}
                 className="px-2.5 py-1.5 text-xs font-mono bg-slate-950 hover:bg-slate-800 text-amber-400 border border-slate-800 rounded-md text-left transition"
               >
                 ⚡ STAFF

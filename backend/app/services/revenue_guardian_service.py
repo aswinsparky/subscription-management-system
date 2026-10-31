@@ -1,5 +1,5 @@
 """
-Revenue Guardian Intelligence Engine for Brightloop Nexus (Member 2).
+Revenue Guardian Intelligence Engine for Brightloop Nexus.
 Performs deterministic anomaly detection to discover revenue leakage, billing gaps, and overdue risks.
 """
 from datetime import datetime

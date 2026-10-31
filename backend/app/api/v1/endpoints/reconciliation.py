@@ -1,5 +1,5 @@
 """
-Payment Reconciliation API Endpoints (Member 2).
+Payment Reconciliation API Endpoints.
 """
 from typing import Optional
 from fastapi import APIRouter, Depends, Query

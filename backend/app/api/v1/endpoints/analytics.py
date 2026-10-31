@@ -1,5 +1,5 @@
 """
-Revenue Command Center and Analytics API Endpoints (Member 2).
+Revenue Command Center and Analytics API Endpoints .
 """
 from typing import Dict, Any, List
 from fastapi import APIRouter, Depends, Query
@@ -45,7 +45,7 @@ def get_payment_methods(
     return AnalyticsService.get_payment_method_distribution(db)
 
 
-@router.get("/churn-signals/{customer_id}", response_model=Dict[str, Any], summary="Get customer payment churn signals (Member 1 integration)")
+@router.get("/churn-signals/{customer_id}", response_model=Dict[str, Any], summary="Get customer payment churn signals (Integration)")
 def get_churn_signals(
     customer_id: int,
     db: Session = Depends(get_db),

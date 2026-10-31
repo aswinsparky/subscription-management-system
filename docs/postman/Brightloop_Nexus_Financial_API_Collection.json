@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "Brightloop Nexus - Member 2 Financial & Revenue Intelligence API",
+    "name": "Brightloop Nexus - Financial & Revenue Intelligence API",
     "description": "Comprehensive API collection for Taxes, Discounts, Invoices, ReportLab PDF, Payments, Reconciliation, Revenue Guardian, Simulator, AI Assistant, Analytics, and Recovery.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },

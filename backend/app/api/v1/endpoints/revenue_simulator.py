@@ -1,5 +1,5 @@
 """
-Future Revenue Simulator API Endpoints (Member 2).
+Future Revenue Simulator API Endpoints.
 """
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session

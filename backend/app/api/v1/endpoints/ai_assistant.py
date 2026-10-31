@@ -1,5 +1,5 @@
 """
-Ask Brightloop AI Assistant API Endpoints (Member 2).
+Ask Brightloop AI Assistant API Endpoints.
 """
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session

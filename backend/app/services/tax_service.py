@@ -1,5 +1,5 @@
 """
-Tax Domain Service for Brightloop Nexus (Member 2).
+Tax Domain Service for Brightloop Nexus.
 Handles tax configuration, effective date matching, and accurate precision calculations.
 """
 from decimal import Decimal

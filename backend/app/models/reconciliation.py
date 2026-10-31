@@ -1,5 +1,5 @@
 """
-Payment Reconciliation Model for Brightloop Nexus (Member 2).
+Payment Reconciliation Model for Brightloop Nexus.
 Audits financial matching between invoices and payment receipts.
 """
 from datetime import datetime

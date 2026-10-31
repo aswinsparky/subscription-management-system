@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Invoices & Line Items (Member 2).
+Pydantic v2 Schemas for Invoices & Line Items.
 """
 from datetime import datetime
 from decimal import Decimal

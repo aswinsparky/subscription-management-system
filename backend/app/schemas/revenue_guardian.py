@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Revenue Guardian Anomaly Detection (Member 2).
+Pydantic v2 Schemas for Revenue Guardian Anomaly Detection.
 """
 from datetime import datetime
 from decimal import Decimal

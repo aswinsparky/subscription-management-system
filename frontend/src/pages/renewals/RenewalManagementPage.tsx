@@ -56,7 +56,7 @@ export const RenewalManagementPage: React.FC = () => {
     try {
       await apiClient.post(`/renewals/trigger/${subId}`);
       await Promise.all([fetchDueSubscriptions(), fetchRenewalRequests()]);
-      alert('Subscription renewal successfully triggered and dispatched to Member 2!');
+      alert('Subscription renewal successfully triggered!');
     } catch (err: any) {
       alert(err.response?.data?.detail || 'Failed to trigger renewal.');
     }
@@ -85,11 +85,11 @@ export const RenewalManagementPage: React.FC = () => {
           <div className="flex items-center space-x-2.5 text-indigo-400 mb-1">
             <RefreshCw className="w-5 h-5" />
             <h2 className="text-xl font-bold text-white tracking-wide">
-              Automated Renewal Scheduler & Member 2 Billing Integration
+              Automated Renewal Scheduler & Invoicing Engine
             </h2>
           </div>
           <p className="text-xs text-slate-400">
-            Idempotent automated renewal execution, period advancement, and Member 2 invoice generation.
+            Idempotent automated renewal execution, period advancement, and automated invoice generation.
           </p>
         </div>
 
@@ -125,7 +125,7 @@ export const RenewalManagementPage: React.FC = () => {
 
         <div className="p-4 bg-slate-950/60 rounded-2xl border border-slate-800">
           <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-            <span>Pending Member 2 Invoices</span>
+            <span>Pending Recurring Invoices</span>
             <RefreshCw className="w-4 h-4 text-indigo-400" />
           </div>
           <div className="text-2xl font-bold text-indigo-300 font-mono">
@@ -299,7 +299,7 @@ export const RenewalManagementPage: React.FC = () => {
                   <th className="py-3 px-4">Period</th>
                   <th className="py-3 px-4 text-right">Amount</th>
                   <th className="py-3 px-4 text-center">Status</th>
-                  <th className="py-3 px-4">Member 2 Invoice Ref</th>
+                  <th className="py-3 px-4">Generated Invoice Ref</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60 font-sans">

@@ -1,6 +1,6 @@
 """
-Automated Renewal Scheduler & Member 2 Billing Integration Service (Module 7).
-Enforces idempotency keys, billing period advancement, and Member 2 invoice synchronization.
+Automated Renewal Scheduler & Billing Integration Service (Module 7).
+Enforces idempotency keys, billing period advancement, and recurring invoice synchronization.
 """
 import uuid
 from datetime import datetime, timezone, timedelta
@@ -208,7 +208,7 @@ class RenewalService:
             db.flush()
 
         if simulate_member2:
-            # Synchronous simulated dispatch to Member 2 Billing Engine
+            # Synchronous automated dispatch to Billing Engine
             inv_ref = f"INV-M2-{uuid.uuid4().hex[:8].upper()}"
             req.status = "PROCESSED"
             req.invoice_reference = inv_ref
@@ -229,7 +229,7 @@ class RenewalService:
                 event_type="RENEWED",
                 actor=actor,
                 previous_state=prev_state,
-                reason=f"Renewed for period {next_period_start.strftime('%Y-%m-%d')} to {next_period_end.strftime('%Y-%m-%d')} via Member 2 invoice {inv_ref}",
+                reason=f"Renewed for period {next_period_start.strftime('%Y-%m-%d')} to {next_period_end.strftime('%Y-%m-%d')} via recurring invoice {inv_ref}",
                 metadata_json={
                     "idempotency_key": idempotency_key,
                     "invoice_reference": inv_ref,
@@ -314,7 +314,7 @@ class RenewalService:
                     event_type="RENEWED",
                     actor=None,
                     previous_state=prev_state,
-                    reason=f"Member 2 Webhook confirmed invoice {payload.invoice_reference}",
+                    reason=f"Billing Webhook confirmed invoice {payload.invoice_reference}",
                     metadata_json={
                         "idempotency_key": payload.idempotency_key,
                         "invoice_reference": payload.invoice_reference,
@@ -322,7 +322,7 @@ class RenewalService:
                 )
         else:
             req.status = "FAILED"
-            req.last_error = payload.error_message or "Member 2 invoice generation failed"
+            req.last_error = payload.error_message or "Recurring invoice generation failed"
             req.retry_count += 1
 
         db.commit()

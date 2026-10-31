@@ -1,5 +1,5 @@
 """
-Automated Renewal Scheduler & Member 2 Billing Integration Schemas (Module 7).
+Automated Renewal Scheduler & Billing Integration Schemas (Module 7).
 """
 from datetime import datetime
 from decimal import Decimal

@@ -189,7 +189,7 @@ class SubscriptionService:
             )
             items_to_add.append(sub_item)
 
-        total_amount = subtotal  # Tax/discount handled by Member 2
+        total_amount = subtotal  # Tax/discount calculated by Invoicing Engine
 
         subscription = Subscription(
             subscription_number=cls.generate_subscription_number(db),

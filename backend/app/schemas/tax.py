@@ -1,5 +1,5 @@
 """
-Pydantic v2 Schemas for Tax Management (Member 2).
+Pydantic v2 Schemas for Tax Management.
 """
 from datetime import datetime
 from decimal import Decimal

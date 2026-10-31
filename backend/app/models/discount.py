@@ -1,5 +1,5 @@
 """
-Discount and Coupon Management Models for Brightloop Nexus (Member 2).
+Discount and Coupon Management Models for Brightloop Nexus.
 Enforces coupon rules, redemption limits, per-customer limits, and minimum spend.
 """
 from datetime import datetime
