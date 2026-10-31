@@ -134,3 +134,4 @@ def get_customer_history(
     Retrieve customer record alongside chronological subscriptions and quotations.
     """
     return CustomerService.get_customer_history(db, customer_id, current_user)
+

@@ -216,3 +216,4 @@ def test_update_customer_and_view_history():
     assert hist["customer"]["id"] == cust_id
     assert isinstance(hist["subscriptions"], list)
     assert isinstance(hist["quotations"], list)
+

@@ -75,3 +75,4 @@ class CustomerHistoryResponse(BaseModel):
     customer: CustomerResponse
     subscriptions: List[SubscriptionSummary]
     quotations: List[QuotationSummary]
+

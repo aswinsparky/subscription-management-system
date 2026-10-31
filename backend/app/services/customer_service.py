@@ -269,3 +269,4 @@ class CustomerService:
             subscriptions=sub_summaries,
             quotations=quote_summaries,
         )
+

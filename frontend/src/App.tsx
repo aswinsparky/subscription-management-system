@@ -6,6 +6,7 @@ import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage';
 import { CustomerListPage } from './pages/customers/CustomerListPage';
+import { ProductListPage } from './pages/products/ProductListPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { CreateStaffModal } from './components/CreateStaffModal';
 import { 
@@ -19,7 +20,8 @@ import {
   Users,
   Shield,
   CheckCircle2,
-  LayoutDashboard
+  LayoutDashboard,
+  Package
 } from 'lucide-react';
 
 interface HealthData {
@@ -36,7 +38,7 @@ interface HealthData {
 
 function MainLayout() {
   const { user, logout } = useAuth();
-  const [currentTab, setCurrentTab] = useState<'overview' | 'customers'>('overview');
+  const [currentTab, setCurrentTab] = useState<'overview' | 'customers' | 'products'>('overview');
   const [health, setHealth] = useState<HealthData | null>(null);
   const [userList, setUserList] = useState<User[]>([]);
   const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
@@ -110,6 +112,18 @@ function MainLayout() {
               <Users className="w-3.5 h-3.5" />
               <span>Customers</span>
             </button>
+
+            <button
+              onClick={() => setCurrentTab('products')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition ${
+                currentTab === 'products'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Package className="w-3.5 h-3.5" />
+              <span>Products & Pricing</span>
+            </button>
           </nav>
         </div>
 
@@ -164,6 +178,8 @@ function MainLayout() {
       <main className="flex-1 max-w-7xl w-full mx-auto p-6 md:p-8 space-y-8">
         {currentTab === 'customers' ? (
           <CustomerListPage />
+        ) : currentTab === 'products' ? (
+          <ProductListPage />
         ) : (
           <>
             {/* Overview Banner */}
@@ -171,13 +187,13 @@ function MainLayout() {
               <div className="max-w-3xl space-y-3">
                 <div className="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-md border border-emerald-800/60">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Phase 1, 2 & 3 Active — Customer Engine & Security Verified</span>
+                  <span>Phase 1, 2, 3 & 4 Active — Pricing & Multi-Variant Catalog Live</span>
                 </div>
                 <h2 className="text-3xl font-extrabold text-white tracking-tight">
                   Enterprise Subscription & Revenue Engine
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed">
-                  Module 2 (Customer Management) is active with full search, account status filtering, pagination, and strict tenant ownership checks. Click on the <strong>Customers</strong> tab above to view and manage customer records.
+                  Module 3 (Product & Variant Management) is active with multi-tier price calculations (Base + Variant = Line Total), safe archive guards, and customer management. Click on <strong>Products & Pricing</strong> or <strong>Customers</strong> in the navigation header above.
                 </p>
               </div>
             </div>
@@ -367,7 +383,7 @@ function MainLayout() {
                   <p className="text-xs text-slate-400">Strict sequential phase execution</p>
                 </div>
                 <span className="text-xs font-mono text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded border border-emerald-800/60">
-                  3 of 12 Phases Completed
+                  4 of 12 Phases Completed
                 </span>
               </div>
 
@@ -376,8 +392,8 @@ function MainLayout() {
                   { num: '01', title: 'Project Setup & MySQL', status: 'COMPLETED', desc: 'FastAPI, MySQL 8.0, PyMySQL, Vite, React TS' },
                   { num: '02', title: 'Auth & RBAC Schema', status: 'COMPLETED', desc: 'Admin, Staff, Customer JWT, bcrypt, Alembic' },
                   { num: '03', title: 'Customer Management', status: 'COMPLETED', desc: 'CRUD, search, filter, pagination, user linking' },
-                  { num: '04', title: 'Product & Variants', status: 'NEXT', desc: 'Multi-variant pricing calculation engine' },
-                  { num: '05', title: 'Subscription Plans', status: 'PENDING', desc: 'Billing intervals, rules, auto-close configs' },
+                  { num: '04', title: 'Product & Variants', status: 'COMPLETED', desc: 'Multi-variant pricing calculation engine' },
+                  { num: '05', title: 'Subscription Plans', status: 'NEXT', desc: 'Billing intervals, rules, auto-close configs' },
                   { num: '06', title: 'Quotation Management', status: 'PENDING', desc: 'Templates, pricing lines, conversion guard' },
                   { num: '07', title: 'Subscription Lifecycle', status: 'PENDING', desc: 'Draft->Active->Closed state machine' },
                   { num: '08', title: 'Renewal Scheduler', status: 'PENDING', desc: 'Automated renewal & Member 2 idempotency' },
