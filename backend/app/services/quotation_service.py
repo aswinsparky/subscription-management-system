@@ -86,6 +86,8 @@ class QuotationService:
             items=items,
         )
 
+    _format_response = _to_quotation_response
+
     @staticmethod
     def create_quotation(db: Session, req: QuotationCreate, current_user: User) -> QuotationResponse:
         """Create quotation from scratch."""
@@ -101,6 +103,8 @@ class QuotationService:
 
         now = datetime.now(timezone.utc)
         exp_date = req.expiration_date or (now + timedelta(days=30))
+        if exp_date.tzinfo is None:
+            exp_date = exp_date.replace(tzinfo=timezone.utc)
         if exp_date <= now:
             raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Expiration date must be in the future.")
 

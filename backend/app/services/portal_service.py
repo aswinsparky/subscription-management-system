@@ -73,7 +73,7 @@ class PortalService:
             .order_by(Quotation.id.desc())
             .all()
         )
-        quotes_resp = [QuotationService._format_response(q) for q in quotes_db]
+        quotes_resp = [QuotationService._to_quotation_response(q) for q in quotes_db]
 
         active_subs = [s for s in subs if s.status == "ACTIVE"]
         total_mrr = sum((s.total_amount for s in active_subs), Decimal("0.00"))

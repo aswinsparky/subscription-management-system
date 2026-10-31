@@ -588,7 +588,7 @@ class SubscriptionService:
                     product_id=it.product_id,
                     variant_id=it.variant_id,
                     product_name=it.product.name if it.product else None,
-                    variant_name=it.variant.name if it.variant else None,
+                    variant_name=it.variant.variant_name if it.variant else None,
                     quantity=it.quantity,
                     unit_price=it.unit_price,
                     subtotal=it.subtotal,
